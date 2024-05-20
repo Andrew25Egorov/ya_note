@@ -59,8 +59,10 @@ class TestNoteCreation(TestCase):
         self.assertEqual(Note.objects.count(), 1)
 
     def test_empty_slug(self):
-        """При создании заметки с незаполненным полем slug,"""
-        """он формируется автоматически."""
+        """
+        При создании заметки с незаполненным полем slug,
+        оно формируется автоматически.
+        """
         self.form_data.pop('slug')
         # Убираем поле slug из словаря:
         response = self.auth_client.post(self.url, data=self.form_data)

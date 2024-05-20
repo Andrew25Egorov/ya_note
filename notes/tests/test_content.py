@@ -19,7 +19,7 @@ class TestContent(TestCase):
                                        slug='note-slug', author=cls.author)
 
     def test_pages_contains_form(self):
-        """На страницы создания и редакт. заметки передаются формы."""
+        """На страницы создания и редактирования заметки передаются формы."""
         self.client.force_login(self.author)
         urls = (
             ('notes:add', None),
@@ -41,8 +41,10 @@ class TestContent(TestCase):
         self.assertIn(self.note, self.object_list)
 
     def test_note_not_in_list_for_another_user(self):
-        """Заметка не передается в список заметок в словаре context"""
-        """для не автора."""
+        """
+        Заметка не передается в список заметок в словаре context
+        для не автора.
+        """
         self.client.force_login(self.not_author)
         url = reverse('notes:list')
         response = self.client.get(url)
